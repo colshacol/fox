@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --config .webpack.config.js",
+		"build": "webpack --config .webpack.config.js",
+		"example": "webpack --config ./example/webpack.config.js",
     "buildExample": "webpack ./example/index.js --watch --output-path ./example/dist --module-bind js=babel-loader --output-filename bundle.js --mode development"
   },
   "devDependencies": {
@@ -49,5 +50,8 @@
     "presets": [
       "./.babel.config.js"
     ]
+  },
+  "dependencies": {
+    "uuid": "^3.2.1"
   }
 }

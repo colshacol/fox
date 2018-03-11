@@ -4,24 +4,13 @@ import { entriesOf } from "utilities/entriesOf";
 import { fileArray } from 'utilities/fileArray'
 import { handlerName } from "./handlerName";
 
-export const applyProps = (element, props) => {
-	// const [ handlers, values ] = fileArray(entriesOf(props), (item) => {
-	// 	return isHandler(item);
-	// })
-
+export const applyProps = (element, props, _fid) => {
 	entriesOf(props).forEach(([ name, value ]) => {
 		isHandler(name)
 			? applyHandler(element, handlerName(name), value)
 			: element[name] = value
 	})
 
-
-
-  // entriesOf(props).forEach(prop => {
-  //   isHandler(name)
-  //     ? element.setAttribute(handlerName(name), value)
-  //     : element.setAttribute(name, value);
-  // });
-
+	element._fid = _fid;
   return element;
 };

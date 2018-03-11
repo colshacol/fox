@@ -1,19 +1,22 @@
-import { createComponent } from "component/createComponent";
+import uuid from "uuid";
+
 import { createElement } from "element/createElement";
-import { createBuiltIn } from "builtIn/createBuiltIn";
-import { isString } from "utilities/isString";
-import { isFunction } from "utilities/isFunction";
-import { firstTruthy } from "utilities/firstTruthy";
+import { applyProps } from "utilities/dom/applyProps";
+import { appendChildren } from "utilities/dom/appendChildren";
+import { createChildren } from "element/createChildren";
+import { EMAP } from "store/EMAP";
 
-// Determine if it should create a regular DOM element
-// or if the element is actually a component.
 export const create = (tag, props, ...children) => {
-  props = props || {};
+	props = props || {};
+	const _fid = uuid();
 
-  return firstTruthy([
-    createBuiltIn(tag, props, children),
-    createElement(tag, props, children),
-    createComponent(tag, props, children),
-    tag
-  ]);
-};
+	const _element = createElement(tag, props, children);
+	const _children = createChildren(children);
+
+	EMAP.set(_fid, { _element, tag, props, children });
+
+	appendChildren(_element, _children);
+	applyProps(_element, props, _fid);
+
+	return _element;
+}

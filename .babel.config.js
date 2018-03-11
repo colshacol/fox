@@ -38,7 +38,7 @@ module.exports = () => ({
 					'component': './src/core/component',
           'element': './src/core/element',
           'builtIn': './src/core/builtIn',
-					'node': './src/core/node'
+					'store': './src/core/store'
 				}
 			}
 		],

@@ -79,7 +79,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _mobx = __webpack_require__(/*! mobx */ \"./node_modules/mobx/lib/mobx.module.js\");\n\nvar _index = _interopRequireDefault(__webpack_require__(/*! ../src/index.js */ \"./src/index.js\"));\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar state = (0, _mobx.observable)({\n  foo: true\n}); // No work yet.\n\nvar setFoo = (0, _mobx.action)(function () {\n  console.log('setting foo');\n  state.foo = !state.foo;\n});\n\nvar App = function App() {\n  console.warn(0);\n  return _index.default.create(\"div\", {\n    className: \"App\"\n  }, _index.default.create(\"button\", {\n    onClick: setFoo\n  }, \"setState\"), _index.default.create(\"p\", null, \"hello\"), _index.default.create(\"div\", null, _index.default.create(\"timmy\", {\n    isCool: true,\n    src: \"https://pbs.twimg.com/profile_images/931971635288174593/DjhdoFLE_bigger.jpg\"\n  }), _index.default.create(Foo, {\n    name: \"timmy\"\n  })));\n};\n\nvar Foo = function Foo() {\n  console.warn(1);\n  return _index.default.create(\"div\", {\n    className: \"App\"\n  }, _index.default.create(\"p\", {\n    \"big-dogs\": \"henry\"\n  }, \"in foo\"), _index.default.create(\"p\", null, state.foo ? 'FOO IS TRUE' : 'foo_is_false'), false, _index.default.create(\"div\", null, _index.default.create(\"strong\", null, \"goodbye\"), _index.default.create(\"input\", {\n    placeholder: \"sup dawg\",\n    value: \"\"\n  })));\n};\n\n(0, _mobx.autorun)(Foo);\n\n_index.default.render(_index.default.create(App, null), document.querySelector('#mountPoint'));\n\n//# sourceURL=webpack:///./example/index.js?");
+eval("\n\nvar _mobx = __webpack_require__(/*! mobx */ \"./node_modules/mobx/lib/mobx.module.js\");\n\nvar _index = _interopRequireDefault(__webpack_require__(/*! ../src/index.js */ \"./src/index.js\"));\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar state = (0, _mobx.observable)({\n  foo: true\n}); // No work yet.\n\nvar setFoo = (0, _mobx.action)(function () {\n  console.log(\"setting foo\");\n  state.foo = !state.foo;\n});\n\nvar App = function App() {\n  return _index.default.create(\"div\", {\n    className: \"App\"\n  }, _index.default.create(\"ul\", null, _index.default.create(\"li\", null, _index.default.create(\"animated\", null, _index.default.create(\"div\", null, \"howdy\")), _index.default.create(\"div\", null, _index.default.create(Foo, null)))));\n};\n\nvar Foo = function Foo() {\n  return _index.default.create(\"div\", {\n    className: \"Foo\"\n  }, _index.default.create(\"ul\", null, _index.default.create(\"li\", null, _index.default.create(\"span\", null, \"spanley\"), _index.default.create(\"div\", null, _index.default.create(\"p\", null, \"howdy\")))));\n};\n\nvar Wrapper =\n/*#__PURE__*/\nfunction () {\n  function Wrapper(props, children) {\n    var _this = this;\n\n    this.props = props;\n    this.children = children;\n\n    this.render = function () {\n      return _this.render(props, children);\n    };\n  }\n\n  var _proto = Wrapper.prototype;\n\n  _proto.render = function render(props, children) {\n    return children;\n  };\n\n  return Wrapper;\n}();\n\n_index.default.render(_index.default.create(App, null), document.querySelector(\"#mountPoint\"));\n\n//# sourceURL=webpack:///./example/index.js?");
 
 /***/ }),
 
@@ -95,6 +95,61 @@ eval("/* WEBPACK VAR INJECTION */(function(global) {\n\nexports.__esModule = tru
 
 /***/ }),
 
+/***/ "./node_modules/uuid/index.js":
+/*!************************************!*\
+  !*** ./node_modules/uuid/index.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var v1 = __webpack_require__(/*! ./v1 */ \"./node_modules/uuid/v1.js\");\n\nvar v4 = __webpack_require__(/*! ./v4 */ \"./node_modules/uuid/v4.js\");\n\nvar uuid = v4;\nuuid.v1 = v1;\nuuid.v4 = v4;\nmodule.exports = uuid;\n\n//# sourceURL=webpack:///./node_modules/uuid/index.js?");
+
+/***/ }),
+
+/***/ "./node_modules/uuid/lib/bytesToUuid.js":
+/*!**********************************************!*\
+  !*** ./node_modules/uuid/lib/bytesToUuid.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("/**\n * Convert array of 16 byte values to UUID string format of the form:\n * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX\n */\nvar byteToHex = [];\n\nfor (var i = 0; i < 256; ++i) {\n  byteToHex[i] = (i + 0x100).toString(16).substr(1);\n}\n\nfunction bytesToUuid(buf, offset) {\n  var i = offset || 0;\n  var bth = byteToHex;\n  return bth[buf[i++]] + bth[buf[i++]] + bth[buf[i++]] + bth[buf[i++]] + '-' + bth[buf[i++]] + bth[buf[i++]] + '-' + bth[buf[i++]] + bth[buf[i++]] + '-' + bth[buf[i++]] + bth[buf[i++]] + '-' + bth[buf[i++]] + bth[buf[i++]] + bth[buf[i++]] + bth[buf[i++]] + bth[buf[i++]] + bth[buf[i++]];\n}\n\nmodule.exports = bytesToUuid;\n\n//# sourceURL=webpack:///./node_modules/uuid/lib/bytesToUuid.js?");
+
+/***/ }),
+
+/***/ "./node_modules/uuid/lib/rng-browser.js":
+/*!**********************************************!*\
+  !*** ./node_modules/uuid/lib/rng-browser.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("// Unique ID creation requires a high quality random # generator.  In the\n// browser this is a little complicated due to unknown quality of Math.random()\n// and inconsistent support for the `crypto` API.  We do the best we can via\n// feature-detection\n// getRandomValues needs to be invoked in a context where \"this\" is a Crypto implementation.\nvar getRandomValues = typeof crypto != 'undefined' && crypto.getRandomValues.bind(crypto) || typeof msCrypto != 'undefined' && msCrypto.getRandomValues.bind(msCrypto);\n\nif (getRandomValues) {\n  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto\n  var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef\n\n  module.exports = function whatwgRNG() {\n    getRandomValues(rnds8);\n    return rnds8;\n  };\n} else {\n  // Math.random()-based (RNG)\n  //\n  // If all else fails, use Math.random().  It's fast, but is of unspecified\n  // quality.\n  var rnds = new Array(16);\n\n  module.exports = function mathRNG() {\n    for (var i = 0, r; i < 16; i++) {\n      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;\n      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;\n    }\n\n    return rnds;\n  };\n}\n\n//# sourceURL=webpack:///./node_modules/uuid/lib/rng-browser.js?");
+
+/***/ }),
+
+/***/ "./node_modules/uuid/v1.js":
+/*!*********************************!*\
+  !*** ./node_modules/uuid/v1.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var rng = __webpack_require__(/*! ./lib/rng */ \"./node_modules/uuid/lib/rng-browser.js\");\n\nvar bytesToUuid = __webpack_require__(/*! ./lib/bytesToUuid */ \"./node_modules/uuid/lib/bytesToUuid.js\"); // **`v1()` - Generate time-based UUID**\n//\n// Inspired by https://github.com/LiosK/UUID.js\n// and http://docs.python.org/library/uuid.html\n\n\nvar _nodeId;\n\nvar _clockseq; // Previous uuid creation time\n\n\nvar _lastMSecs = 0;\nvar _lastNSecs = 0; // See https://github.com/broofa/node-uuid for API details\n\nfunction v1(options, buf, offset) {\n  var i = buf && offset || 0;\n  var b = buf || [];\n  options = options || {};\n  var node = options.node || _nodeId;\n  var clockseq = options.clockseq !== undefined ? options.clockseq : _clockseq; // node and clockseq need to be initialized to random values if they're not\n  // specified.  We do this lazily to minimize issues related to insufficient\n  // system entropy.  See #189\n\n  if (node == null || clockseq == null) {\n    var seedBytes = rng();\n\n    if (node == null) {\n      // Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)\n      node = _nodeId = [seedBytes[0] | 0x01, seedBytes[1], seedBytes[2], seedBytes[3], seedBytes[4], seedBytes[5]];\n    }\n\n    if (clockseq == null) {\n      // Per 4.2.2, randomize (14 bit) clockseq\n      clockseq = _clockseq = (seedBytes[6] << 8 | seedBytes[7]) & 0x3fff;\n    }\n  } // UUID timestamps are 100 nano-second units since the Gregorian epoch,\n  // (1582-10-15 00:00).  JSNumbers aren't precise enough for this, so\n  // time is handled internally as 'msecs' (integer milliseconds) and 'nsecs'\n  // (100-nanoseconds offset from msecs) since unix epoch, 1970-01-01 00:00.\n\n\n  var msecs = options.msecs !== undefined ? options.msecs : new Date().getTime(); // Per 4.2.1.2, use count of uuid's generated during the current clock\n  // cycle to simulate higher resolution clock\n\n  var nsecs = options.nsecs !== undefined ? options.nsecs : _lastNSecs + 1; // Time since last uuid creation (in msecs)\n\n  var dt = msecs - _lastMSecs + (nsecs - _lastNSecs) / 10000; // Per 4.2.1.2, Bump clockseq on clock regression\n\n  if (dt < 0 && options.clockseq === undefined) {\n    clockseq = clockseq + 1 & 0x3fff;\n  } // Reset nsecs if clock regresses (new clockseq) or we've moved onto a new\n  // time interval\n\n\n  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === undefined) {\n    nsecs = 0;\n  } // Per 4.2.1.2 Throw error if too many uuids are requested\n\n\n  if (nsecs >= 10000) {\n    throw new Error('uuid.v1(): Can\\'t create more than 10M uuids/sec');\n  }\n\n  _lastMSecs = msecs;\n  _lastNSecs = nsecs;\n  _clockseq = clockseq; // Per 4.1.4 - Convert from unix epoch to Gregorian epoch\n\n  msecs += 12219292800000; // `time_low`\n\n  var tl = ((msecs & 0xfffffff) * 10000 + nsecs) % 0x100000000;\n  b[i++] = tl >>> 24 & 0xff;\n  b[i++] = tl >>> 16 & 0xff;\n  b[i++] = tl >>> 8 & 0xff;\n  b[i++] = tl & 0xff; // `time_mid`\n\n  var tmh = msecs / 0x100000000 * 10000 & 0xfffffff;\n  b[i++] = tmh >>> 8 & 0xff;\n  b[i++] = tmh & 0xff; // `time_high_and_version`\n\n  b[i++] = tmh >>> 24 & 0xf | 0x10; // include version\n\n  b[i++] = tmh >>> 16 & 0xff; // `clock_seq_hi_and_reserved` (Per 4.2.2 - include variant)\n\n  b[i++] = clockseq >>> 8 | 0x80; // `clock_seq_low`\n\n  b[i++] = clockseq & 0xff; // `node`\n\n  for (var n = 0; n < 6; ++n) {\n    b[i + n] = node[n];\n  }\n\n  return buf ? buf : bytesToUuid(b);\n}\n\nmodule.exports = v1;\n\n//# sourceURL=webpack:///./node_modules/uuid/v1.js?");
+
+/***/ }),
+
+/***/ "./node_modules/uuid/v4.js":
+/*!*********************************!*\
+  !*** ./node_modules/uuid/v4.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var rng = __webpack_require__(/*! ./lib/rng */ \"./node_modules/uuid/lib/rng-browser.js\");\n\nvar bytesToUuid = __webpack_require__(/*! ./lib/bytesToUuid */ \"./node_modules/uuid/lib/bytesToUuid.js\");\n\nfunction v4(options, buf, offset) {\n  var i = buf && offset || 0;\n\n  if (typeof options == 'string') {\n    buf = options === 'binary' ? new Array(16) : null;\n    options = null;\n  }\n\n  options = options || {};\n  var rnds = options.random || (options.rng || rng)(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`\n\n  rnds[6] = rnds[6] & 0x0f | 0x40;\n  rnds[8] = rnds[8] & 0x3f | 0x80; // Copy bytes to buffer, if provided\n\n  if (buf) {\n    for (var ii = 0; ii < 16; ++ii) {\n      buf[i + ii] = rnds[ii];\n    }\n  }\n\n  return buf || bytesToUuid(rnds);\n}\n\nmodule.exports = v4;\n\n//# sourceURL=webpack:///./node_modules/uuid/v4.js?");
+
+/***/ }),
+
 /***/ "./node_modules/webpack/buildin/global.js":
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
@@ -106,6 +161,30 @@ eval("var g; // This works in non-strict mode\n\ng = function () {\n  return thi
 
 /***/ }),
 
+/***/ "./src/core/builtIn/builtIns/animated.js":
+/*!***********************************************!*\
+  !*** ./src/core/builtIn/builtIns/animated.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nexports.__esModule = true;\nexports.animated = void 0;\n\nvar _index = _interopRequireDefault(__webpack_require__(/*! ../../../index.js */ \"./src/index.js\"));\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar animated = function animated(props, children) {\n  return _index.default.create(\"div\", {\n    className: \"animated\"\n  }, children[0]);\n};\n\nexports.animated = animated;\n\n//# sourceURL=webpack:///./src/core/builtIn/builtIns/animated.js?");
+
+/***/ }),
+
+/***/ "./src/core/builtIn/builtIns/index.js":
+/*!********************************************!*\
+  !*** ./src/core/builtIn/builtIns/index.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nexports.__esModule = true;\nexports.builtIns = void 0;\n\nvar _animated = __webpack_require__(/*! ./animated */ \"./src/core/builtIn/builtIns/animated.js\");\n\nvar _isString = __webpack_require__(/*! ../../../utilities/isString */ \"./src/utilities/isString.js\");\n\nvar builtInExists = function builtInExists(tag, cb) {\n  return (0, _isString.isString)(tag) && tag in builtIns && cb();\n};\n\nvar builtIns = {\n  animated: _animated.animated,\n  builtInExists: builtInExists\n};\nexports.builtIns = builtIns;\n\n//# sourceURL=webpack:///./src/core/builtIn/builtIns/index.js?");
+
+/***/ }),
+
 /***/ "./src/core/builtIn/createBuiltIn.js":
 /*!*******************************************!*\
   !*** ./src/core/builtIn/createBuiltIn.js ***!
@@ -114,7 +193,7 @@ eval("var g; // This works in non-strict mode\n\ng = function () {\n  return thi
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nexports.__esModule = true;\nexports.createBuiltIn = void 0;\n\nvar _index = _interopRequireDefault(__webpack_require__(/*! ../../index.js */ \"./src/index.js\"));\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar builtIns = {\n  timmy: function timmy(props, children) {\n    console.log({\n      props: props\n    });\n    return _index.default.create(\"img\", {\n      src: props.src,\n      alt: \"timmy rocks\"\n    });\n  }\n};\n\nvar createBuiltIn = function createBuiltIn(tag, props, children) {\n  return tag in builtIns && builtIns[tag](props, children);\n};\n\nexports.createBuiltIn = createBuiltIn;\n\n//# sourceURL=webpack:///./src/core/builtIn/createBuiltIn.js?");
+eval("\n\nexports.__esModule = true;\nexports.createBuiltIn = void 0;\n\nvar _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ \"./node_modules/uuid/index.js\"));\n\nvar _builtIns = __webpack_require__(/*! ./builtIns */ \"./src/core/builtIn/builtIns/index.js\");\n\nvar _applyProps = __webpack_require__(/*! ../../utilities/dom/applyProps */ \"./src/utilities/dom/applyProps.js\");\n\nvar _createChildElements = __webpack_require__(/*! ../element/createChildElements */ \"./src/core/element/createChildElements.js\");\n\nvar _appendChildren = __webpack_require__(/*! ../../utilities/dom/appendChildren */ \"./src/utilities/dom/appendChildren.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar BMAP = new Map();\n\nvar createBuiltIn = function createBuiltIn(tag, props, children) {\n  return _builtIns.builtIns.builtInExists(tag, function () {\n    return continueCreation(tag, props, children);\n  });\n};\n\nexports.createBuiltIn = createBuiltIn;\n\nvar continueCreation = function continueCreation(tag, props, children) {\n  var _fid = (0, _uuid.default)();\n\n  var _children = (0, _createChildElements.createChildElements)(children);\n\n  var _element = _builtIns.builtIns[tag](props, children, _fid);\n\n  debugger;\n  BMAP.set(_fid, {\n    _element: _element,\n    tag: tag,\n    props: props,\n    _fid: _fid,\n    _children: _children\n  }); // const x = appendChildren(, createChildElements(_children))\n\n  return _element;\n};\n\n//# sourceURL=webpack:///./src/core/builtIn/createBuiltIn.js?");
 
 /***/ }),
 
@@ -126,7 +205,7 @@ eval("\n\nexports.__esModule = true;\nexports.createBuiltIn = void 0;\n\nvar _in
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nexports.__esModule = true;\nexports.createComponent = void 0;\n\nvar _appendChildren = __webpack_require__(/*! ../../utilities/dom/appendChildren */ \"./src/utilities/dom/appendChildren.js\");\n\nvar _applyProps = __webpack_require__(/*! ../../utilities/dom/applyProps */ \"./src/utilities/dom/applyProps.js\");\n\nvar _createChildElements = __webpack_require__(/*! ../element/createChildElements */ \"./src/core/element/createChildElements.js\");\n\nvar _isFunction = __webpack_require__(/*! ../../utilities/isFunction */ \"./src/utilities/isFunction.js\");\n\nvar createComponent = function createComponent(component, props, children) {\n  return (0, _isFunction.isFunction)(component) && (0, _appendChildren.appendChildren)((0, _applyProps.applyProps)(component(props), props), (0, _createChildElements.createChildElements)(children));\n};\n\nexports.createComponent = createComponent;\n\n//# sourceURL=webpack:///./src/core/component/createComponent.js?");
+eval("\n\nexports.__esModule = true;\nexports.createComponent = void 0;\n\nvar _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ \"./node_modules/uuid/index.js\"));\n\nvar _appendChildren = __webpack_require__(/*! ../../utilities/dom/appendChildren */ \"./src/utilities/dom/appendChildren.js\");\n\nvar _applyProps = __webpack_require__(/*! ../../utilities/dom/applyProps */ \"./src/utilities/dom/applyProps.js\");\n\nvar _createChildElements = __webpack_require__(/*! ../element/createChildElements */ \"./src/core/element/createChildElements.js\");\n\nvar _isFunction = __webpack_require__(/*! ../../utilities/isFunction */ \"./src/utilities/isFunction.js\");\n\nvar _ifFunction = __webpack_require__(/*! ../../utilities/ifFunction */ \"./src/utilities/ifFunction.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar CMAP = new Map();\n\nvar createComponent = function createComponent(component, props, children) {\n  return (0, _ifFunction.ifFunction)(component, function () {\n    return continueCreation(component, props, children);\n  });\n};\n\nexports.createComponent = createComponent;\n\nvar continueCreation = function continueCreation(component, props, children) {\n  var _fid = (0, _uuid.default)();\n\n  var _element = component(props);\n\n  CMAP.set(_fid, {\n    _element: _element,\n    props: props,\n    children: children,\n    _fid: _fid\n  });\n  return (0, _isFunction.isFunction)(component) && (0, _appendChildren.appendChildren)((0, _applyProps.applyProps)(_element, props, _fid), (0, _createChildElements.createChildElements)(children));\n};\n\n//# sourceURL=webpack:///./src/core/component/createComponent.js?");
 
 /***/ }),
 
@@ -150,7 +229,7 @@ eval("\n\nexports.__esModule = true;\nexports.create = void 0;\n\nvar _createCom
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nexports.__esModule = true;\nexports.createChildElements = void 0;\n\nvar _isString = __webpack_require__(/*! ../../utilities/isString */ \"./src/utilities/isString.js\");\n\n// Generate a new array of child nodes with\n// string children being converted to text nodes.\nvar createChildElements = function createChildElements(children) {\n  children = children || [];\n  return children.map(function (child) {\n    return (0, _isString.isString)(child) ? document.createTextNode(child) : child;\n  });\n};\n\nexports.createChildElements = createChildElements;\n\n//# sourceURL=webpack:///./src/core/element/createChildElements.js?");
+eval("\n\nexports.__esModule = true;\nexports.createChildElements = void 0;\n\nvar _isString = __webpack_require__(/*! ../../utilities/isString */ \"./src/utilities/isString.js\");\n\n// Generate a new array of child nodes with\n// string children being converted to text nodes.\nvar i = 0;\n\nvar createChildElements = function createChildElements(children) {\n  children = children || [];\n  return children.map(function (child) {\n    if (Array.isArray(child)) return createChildElements(child);\n    return (0, _isString.isString)(child) ? document.createTextNode(child) : child;\n  });\n};\n\nexports.createChildElements = createChildElements;\n\n//# sourceURL=webpack:///./src/core/element/createChildElements.js?");
 
 /***/ }),
 
@@ -162,7 +241,7 @@ eval("\n\nexports.__esModule = true;\nexports.createChildElements = void 0;\n\nv
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nexports.__esModule = true;\nexports.createElement = void 0;\n\nvar _appendChildren = __webpack_require__(/*! ../../utilities/dom/appendChildren */ \"./src/utilities/dom/appendChildren.js\");\n\nvar _applyProps = __webpack_require__(/*! ../../utilities/dom/applyProps */ \"./src/utilities/dom/applyProps.js\");\n\nvar _createChildElements = __webpack_require__(/*! ./createChildElements */ \"./src/core/element/createChildElements.js\");\n\nvar _isHandler = __webpack_require__(/*! ../../utilities/isHandler */ \"./src/utilities/isHandler.js\");\n\nvar _isString = __webpack_require__(/*! ../../utilities/isString */ \"./src/utilities/isString.js\");\n\nvar elementWithProps = function elementWithProps(tag, props) {\n  var element = document.createElement(tag);\n  return element;\n}; // Created element and recurses on children.\n\n\nvar createElement = function createElement(tag, props, children) {\n  return (0, _isString.isString)(tag) && (0, _appendChildren.appendChildren)((0, _applyProps.applyProps)(document.createElement(tag), props), (0, _createChildElements.createChildElements)(children));\n};\n\nexports.createElement = createElement;\n\n//# sourceURL=webpack:///./src/core/element/createElement.js?");
+eval("\n\nexports.__esModule = true;\nexports.createElement = void 0;\n\nvar _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ \"./node_modules/uuid/index.js\"));\n\nvar _appendChildren = __webpack_require__(/*! ../../utilities/dom/appendChildren */ \"./src/utilities/dom/appendChildren.js\");\n\nvar _applyProps = __webpack_require__(/*! ../../utilities/dom/applyProps */ \"./src/utilities/dom/applyProps.js\");\n\nvar _createChildElements = __webpack_require__(/*! ./createChildElements */ \"./src/core/element/createChildElements.js\");\n\nvar _isString = __webpack_require__(/*! ../../utilities/isString */ \"./src/utilities/isString.js\");\n\nvar _ifString = __webpack_require__(/*! ../../utilities/ifString */ \"./src/utilities/ifString.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar EMAP = new Map(); // Created element and recurses on children.\n\nvar createElement = function createElement(tag, props, children) {\n  return (0, _ifString.ifString)(tag, function () {\n    return continueCreation(tag, props, children);\n  });\n};\n\nexports.createElement = createElement;\n\nvar continueCreation = function continueCreation(tag, props, children) {\n  var _element = document.createElement(tag);\n\n  var _fid = (0, _uuid.default)();\n\n  EMAP.set(_fid, {\n    _element: _element,\n    tag: tag,\n    props: props,\n    _fid: _fid\n  });\n  return (0, _isString.isString)(tag) && (0, _appendChildren.appendChildren)((0, _applyProps.applyProps)(_element, props, _fid), (0, _createChildElements.createChildElements)(children));\n};\n\n//# sourceURL=webpack:///./src/core/element/createElement.js?");
 
 /***/ }),
 
@@ -210,7 +289,7 @@ eval("\n\nexports.__esModule = true;\nexports.default = void 0;\n\nvar _core = _
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nexports.__esModule = true;\nexports.appendChildren = void 0;\n\nvar appendChildren = function appendChildren(element, children) {\n  if (children === void 0) {\n    children = [];\n  }\n\n  children.forEach(function (child) {\n    child && element.appendChild(child);\n  });\n  return element;\n};\n\nexports.appendChildren = appendChildren;\n\n//# sourceURL=webpack:///./src/utilities/dom/appendChildren.js?");
+eval("\n\nexports.__esModule = true;\nexports.appendChildren = void 0;\nvar i = 0;\n\nvar appendChildren = function appendChildren(element, children) {\n  children.forEach(function (child, ii) {\n    if (Array.isArray(child)) return appendChildren(element, child);\n    child && element.appendChild(child);\n  });\n  return element;\n};\n\nexports.appendChildren = appendChildren;\n\n//# sourceURL=webpack:///./src/utilities/dom/appendChildren.js?");
 
 /***/ }),
 
@@ -234,7 +313,7 @@ eval("\n\nexports.__esModule = true;\nexports.applyHandler = void 0;\n\nvar appl
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nexports.__esModule = true;\nexports.applyProps = void 0;\n\nvar _applyHandler = __webpack_require__(/*! ./applyHandler */ \"./src/utilities/dom/applyHandler.js\");\n\nvar _isHandler = __webpack_require__(/*! ../isHandler */ \"./src/utilities/isHandler.js\");\n\nvar _entriesOf = __webpack_require__(/*! ../entriesOf */ \"./src/utilities/entriesOf.js\");\n\nvar _fileArray = __webpack_require__(/*! ../fileArray */ \"./src/utilities/fileArray.js\");\n\nvar _handlerName = __webpack_require__(/*! ./handlerName */ \"./src/utilities/dom/handlerName.js\");\n\nvar applyProps = function applyProps(element, props) {\n  // const [ handlers, values ] = fileArray(entriesOf(props), (item) => {\n  // \treturn isHandler(item);\n  // })\n  (0, _entriesOf.entriesOf)(props).forEach(function (_ref) {\n    var name = _ref[0],\n        value = _ref[1];\n    (0, _isHandler.isHandler)(name) ? (0, _applyHandler.applyHandler)(element, (0, _handlerName.handlerName)(name), value) : element[name] = value;\n  }); // entriesOf(props).forEach(prop => {\n  //   isHandler(name)\n  //     ? element.setAttribute(handlerName(name), value)\n  //     : element.setAttribute(name, value);\n  // });\n\n  return element;\n};\n\nexports.applyProps = applyProps;\n\n//# sourceURL=webpack:///./src/utilities/dom/applyProps.js?");
+eval("\n\nexports.__esModule = true;\nexports.applyProps = void 0;\n\nvar _applyHandler = __webpack_require__(/*! ./applyHandler */ \"./src/utilities/dom/applyHandler.js\");\n\nvar _isHandler = __webpack_require__(/*! ../isHandler */ \"./src/utilities/isHandler.js\");\n\nvar _entriesOf = __webpack_require__(/*! ../entriesOf */ \"./src/utilities/entriesOf.js\");\n\nvar _fileArray = __webpack_require__(/*! ../fileArray */ \"./src/utilities/fileArray.js\");\n\nvar _handlerName = __webpack_require__(/*! ./handlerName */ \"./src/utilities/dom/handlerName.js\");\n\nvar applyProps = function applyProps(element, props, _fid) {\n  element._fid = _fid;\n  (0, _entriesOf.entriesOf)(props).forEach(function (_ref) {\n    var name = _ref[0],\n        value = _ref[1];\n    (0, _isHandler.isHandler)(name) ? (0, _applyHandler.applyHandler)(element, (0, _handlerName.handlerName)(name), value) : element[name] = value;\n  });\n  return element;\n};\n\nexports.applyProps = applyProps;\n\n//# sourceURL=webpack:///./src/utilities/dom/applyProps.js?");
 
 /***/ }),
 
@@ -307,6 +386,30 @@ eval("\n\nexports.__esModule = true;\nexports.fileArray = void 0;\n\nvar fileArr
 
 "use strict";
 eval("\n\nexports.__esModule = true;\nexports.firstTruthy = void 0;\n\nvar firstTruthy = function firstTruthy(values) {\n  if (values === void 0) {\n    values = [];\n  }\n\n  return values.find(function (value) {\n    return !!value;\n  });\n};\n\nexports.firstTruthy = firstTruthy;\n\n//# sourceURL=webpack:///./src/utilities/firstTruthy.js?");
+
+/***/ }),
+
+/***/ "./src/utilities/ifFunction.js":
+/*!*************************************!*\
+  !*** ./src/utilities/ifFunction.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nexports.__esModule = true;\nexports.ifFunction = void 0;\n\nvar _isFunction = __webpack_require__(/*! ./isFunction */ \"./src/utilities/isFunction.js\");\n\nvar ifFunction = function ifFunction(target, cb) {\n  return (0, _isFunction.isFunction)(target) && cb();\n};\n\nexports.ifFunction = ifFunction;\n\n//# sourceURL=webpack:///./src/utilities/ifFunction.js?");
+
+/***/ }),
+
+/***/ "./src/utilities/ifString.js":
+/*!***********************************!*\
+  !*** ./src/utilities/ifString.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nexports.__esModule = true;\nexports.ifString = void 0;\n\nvar _isString = __webpack_require__(/*! ./isString */ \"./src/utilities/isString.js\");\n\nvar ifString = function ifString(target, cb) {\n  return (0, _isString.isString)(target) && cb();\n};\n\nexports.ifString = ifString;\n\n//# sourceURL=webpack:///./src/utilities/ifString.js?");
 
 /***/ }),
 

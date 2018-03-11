@@ -1,0 +1,1 @@
+export const CMAP = new Map();

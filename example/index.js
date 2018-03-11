@@ -1,47 +1,45 @@
-import { observable, autorun, action } from 'mobx'
-import fox  from 'fox'
+import { observable, autorun, action } from "mobx";
+import fox from "fox";
 
 const state = observable({
 	foo: true
-})
+});
 
 // No work yet.
 const setFoo = action(() => {
-	console.log('setting foo')
+	console.log("setting foo");
 	state.foo = !state.foo;
-})
+});
 
 const App = () => {
-	console.warn(0);
-
 	return (
 		<div className="App">
-			<button onClick={setFoo}>setState</button>
-			<p>hello</p>
-			<div>
-				<timmy isCool src="https://pbs.twimg.com/profile_images/931971635288174593/DjhdoFLE_bigger.jpg" />
-				<Foo name="timmy" />
-			</div>
+			<animated>
+				<p>I'm an {"<animated>"} builtIn. I come pre-installed!</p>
+			</animated>
+			<Foo />
 		</div>
-	)
-}
+	);
+};
 
 const Foo = () => {
-	console.warn(1);
-
 	return (
-		<div className="App">
-			<p big-dogs="henry">in foo</p>
-			<p>{state.foo ? 'FOO IS TRUE' : 'foo_is_false'}</p>
-			{false}
-			<div>
-				<strong>goodbye</strong>
-				<input placeholder="sup dawg" value="" />
-			</div>
+		<div className="Foo">
+			<p>I AM FOO, HEAR ME ROAR.</p>
 		</div>
-	)
+	);
+};
+
+class Wrapper {
+	constructor(props, children) {
+		this.props = props;
+		this.children = children;
+		this.render = () => this.render(props, children);
+	}
+
+	render(props, children) {
+		return children;
+	}
 }
 
-autorun(Foo)
-
-fox.render(<App />, document.querySelector('#mountPoint'))
+fox.render(<App />, document.querySelector("#mountPoint"));

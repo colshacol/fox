@@ -1,19 +1,18 @@
-import { appendChildren } from 'utilities/dom/appendChildren'
-import { applyProps } from 'utilities/dom/applyProps'
-import { createChildElements } from 'element/createChildElements'
-import { isHandler } from 'utilities/isHandler'
-import { isString } from 'utilities/isString'
+import { builtIns } from "builtIn/builtIns";
 
-const elementWithProps = (tag, props) => {
-  const element = document.createElement(tag);
-  
-  return element;
-}
+// NOTE: Not implemented yet.
+class Component {}
 
-// Created element and recurses on children.
 export const createElement = (tag, props, children) => {
-  return isString(tag) && appendChildren(
-    applyProps(document.createElement(tag), props),
-    createChildElements(children)
-  );
+	switch (typeof tag) {
+		case 'string':
+			return builtIns._exists(tag)
+				? builtIns[tag](props, children)
+				: document.createElement(tag);
+
+		case 'function':
+			return tag instanceof Component
+				? new tag(props, children)
+				: tag(props, children);
+	}
 };
