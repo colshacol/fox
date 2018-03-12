@@ -1,11 +1,11 @@
-import { isString } from 'utilities/isString'
+import { handleNode } from "core/handleNode";
+import { VDOM } from 'vdom'
 
-// NOTE: Mainly just handles text nodes.
-export const createChildren = (children) => {
-  children = children || [];
-
-  return children.map(child => {
-		if (Array.isArray(child)) return createChildren(child);
-    return isString(child) ? document.createTextNode(child) : child;
-  });
-};
+export const createChildren = (children, parent) => {
+	return children.map(node => {
+		const element = handleNode(node, parent);
+		VDOM.register({ element, parent, node })
+		parent.appendChild(element);
+		return element;
+	})
+}

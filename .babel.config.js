@@ -38,13 +38,15 @@ module.exports = () => ({
 					'component': './src/core/component',
           'element': './src/core/element',
           'builtIn': './src/core/builtIn',
-					'store': './src/core/store'
+					'store': './src/core/store',
+					'vdom': './src/core/vdom',
+					'core': './src/core'
 				}
 			}
 		],
     ["@babel/plugin-transform-react-jsx", {
-      "pragma": "fox.create", // default pragma is React.createElement
-      "pragmaFrag": "fox.fragment", // default is React.Fragment
+      "pragma": "fox.createNode", // default pragma is React.createElement
+      "pragmaFrag": "fox.__fragment", // default is React.Fragment
       "throwIfNamespace": false // defaults to true
     }]
   ]

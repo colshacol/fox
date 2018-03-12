@@ -1,3 +1,3 @@
-export { create } from './create'
+export { handleNode } from './handleNode'
+export { createNode } from './createNode'
 export { render } from './render'
-export { Wrapper } from './Wrapper'

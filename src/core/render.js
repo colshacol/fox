@@ -1,5 +1,8 @@
-import { removeChildren } from 'utilities/dom/removeChildren'
+import { removeChildren } from "utilities/dom/removeChildren";
+import { handleNode } from "core/handleNode";
 
-export const render = (element, node) => {
-  removeChildren(node) && node.appendChild(element);
-}
+import { VDOM } from './vdom';
+
+export const render = (node, parent) => {
+	VDOM.render.introduce({ node, parent })
+};
