@@ -1,7 +1,5 @@
 import { builtIns } from "builtIn/builtIns";
-
-// NOTE: Not implemented yet.
-class Component {}
+import { Wrapper } from '../Wrapper';
 
 export const createElement = (tag, props, children) => {
 	switch (typeof tag) {
@@ -11,8 +9,8 @@ export const createElement = (tag, props, children) => {
 				: document.createElement(tag);
 
 		case 'function':
-			return tag instanceof Component
-				? new tag(props, children)
+			return tag instanceof Wrapper
+				? (new tag(props, children)).render()
 				: tag(props, children);
 	}
 };

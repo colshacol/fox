@@ -1,6 +1,7 @@
-import { create, render } from './core'
+import { create, render, Wrapper } from './core'
 
 export default {
+	Wrapper,
 	create,
 	render
 }

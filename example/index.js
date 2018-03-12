@@ -1,15 +1,4 @@
-import { observable, autorun, action } from "mobx";
 import fox from "fox";
-
-const state = observable({
-	foo: true
-});
-
-// No work yet.
-const setFoo = action(() => {
-	console.log("setting foo");
-	state.foo = !state.foo;
-});
 
 const App = () => {
 	return (
@@ -26,19 +15,20 @@ const Foo = () => {
 	return (
 		<div className="Foo">
 			<p>I AM FOO, HEAR ME ROAR.</p>
+			<Bar gooboo={[0, 'g', 0]}>
+				<i>italic?</i>
+			</Bar>
 		</div>
 	);
 };
 
-class Wrapper {
-	constructor(props, children) {
-		this.props = props;
-		this.children = children;
-		this.render = () => this.render(props, children);
-	}
-
-	render(props, children) {
-		return children;
+class Bar extends fox.Wrapper {
+	render({ props, children, state }) {
+		return (
+			<div className="Bar">
+				<p>I AM bar hear me bark?</p>
+			</div>
+		)
 	}
 }
 
