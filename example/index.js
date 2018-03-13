@@ -1,6 +1,7 @@
 import "./logger";
 import fox from "fox";
 
+// STATE NOT WORKING YET
 const state = {
 	name: "Tommy"
 };

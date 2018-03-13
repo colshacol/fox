@@ -6,7 +6,6 @@ import { handlerName } from 'utilities/dom/handlerName';
 
 export const applyProps = ({$element, props = {}, _fid}) => {
 	props = props || {};
-	console.log({ $element,  props })
 	entriesOf(props).forEach(applyPropTo($element))
 };
 
