@@ -4,10 +4,10 @@ import { entriesOf } from "utilities/entriesOf";
 import { fileArray } from 'utilities/fileArray';
 import { handlerName } from 'utilities/dom/handlerName';
 
-export const applyProps = (element, props, _fid) => {
-	entriesOf(props).forEach(applyPropTo(element))
-	element.setAttribute('data-foxy-id', _fid)
-	element._fid = _fid;
+export const applyProps = ({$element, props = {}, _fid}) => {
+	props = props || {};
+	console.log({ $element,  props })
+	entriesOf(props).forEach(applyPropTo($element))
 };
 
 const applyPropTo = (element) => ([ name, value ]) => {
