@@ -1,7 +1,6 @@
-import { createNode, render, Wrapper } from './core'
+import { create, mount } from './core'
 
 export default {
-	Wrapper,
-	createNode,
-	render
+	create,
+	mount
 }

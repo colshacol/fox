@@ -12,10 +12,13 @@ module.exports = () => ({
         }
       }
     ],
-    "@babel/preset-flow"
+		"@babel/preset-flow",
+		"@babel/preset-stage-0"
   ],
   "plugins": [
-    "babel-plugin-console",
+		["babel-plugin-sitrep", {
+			label: 'log'
+		}],
     "@babel/plugin-proposal-pipeline-operator",
     "@babel/plugin-proposal-nullish-coalescing-operator",
     "@babel/plugin-proposal-export-namespace-from",
@@ -44,8 +47,9 @@ module.exports = () => ({
 				}
 			}
 		],
+		"babel-plugin-dev-expression",
     ["@babel/plugin-transform-react-jsx", {
-      "pragma": "fox.createNode", // default pragma is React.createElement
+      "pragma": "fox.create", // default pragma is React.createElement
       "pragmaFrag": "fox.__fragment", // default is React.Fragment
       "throwIfNamespace": false // defaults to true
     }]

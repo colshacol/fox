@@ -1,0 +1,1 @@
+export const isHandler = propName => propName.startsWith("on");
