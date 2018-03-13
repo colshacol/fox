@@ -34,9 +34,29 @@ const App = ({ props, children }) => {
 					</ul>
 				</nav>
 			</div>
+			<Bar fuck />
 		</section>
 	);
 };
+
+const Bar = ({ props, children }) => {
+	return (
+		<nav>
+			<ul>
+				<li>aaaa</li>
+				<li>bbbb</li>
+				<li>
+					<i>cccc</i>
+					<section>
+						<a href="youtube.com">
+							go to youtube
+						</a>
+					</section>
+				</li>
+			</ul>
+		</nav>
+	)
+}
 
 const mountPoint = document.querySelector("#mountPoint");
 fox.mount(<App dog={true} />, mountPoint);

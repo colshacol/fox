@@ -24,7 +24,7 @@ export const mount = (_element, $parent) => {
 		}
 	};
 
-	console.log({ $element })
+	console.log({ $element, _element })
 	$parent.appendChild($element);
 };
 
@@ -51,7 +51,7 @@ export const element = ({ _element, $parent }) => {
 export const component = ({ _element, $parent }) => {
 	console.group("component()", { _element, $parent });
 	
-	const $newElement = _element.tag(_element);
+	const $newElement = _element._createdElement = _element.tag(_element);
 	const element = document.createElement($newElement.tag);
 
 	console.log({ $newElement, element })
